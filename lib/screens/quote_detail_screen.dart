@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:awq/models/quote.dart';
 import 'package:flutter/material.dart';
 
@@ -19,18 +20,19 @@ class QuoteDetailScreen extends StatelessWidget {
               child: Image.network(
                 'https://i.insider.com/53e00a6decad045538f4aa0e',
                 width: double.infinity,
+                height: 300,
                 fit: BoxFit.cover,
               ),
             ),
             Positioned.fill(
               child: Container(
                 color: Colors.black54,
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 55),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 55),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       '" ${quote.text} "',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -38,12 +40,13 @@ class QuoteDetailScreen extends StatelessWidget {
                         color: Colors.white,
                         fontFamily: 'SedgwickAve',
                       ),
+                      maxLines: 7,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     Text(
-                      quote.author,
+                      ' - ${quote.author}',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -57,6 +60,7 @@ class QuoteDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      persistentFooterButtons: <Widget>[],
     );
   }
 }
