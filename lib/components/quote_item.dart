@@ -1,10 +1,15 @@
 import 'package:awq/models/quote.dart';
+import 'package:awq/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
-class QuoteWidget extends StatelessWidget {
+class QuoteItem extends StatelessWidget {
   final Quote quote;
 
-  QuoteWidget(this.quote);
+  QuoteItem(this.quote);
+
+  void _selectQuote(BuildContext context) {
+    Navigator.of(context).pushNamed(AppRoutes.QUOTE_DETAIL, arguments: quote);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class QuoteWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             child: Text(quote.author),
           ),
-          onTap: () => {print('clique quote')},
+          onTap: () => _selectQuote(context),
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:awq/components/quote_widget.dart';
+import 'package:awq/components/quote_item.dart';
 import 'package:awq/models/quote.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +10,11 @@ class ListQuotes extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.only(top: 20.0),
-      children: quotes.map((q) => QuoteWidget(q)).toList(),
+    return ListView.builder(
+      itemCount: quotes.length,
+      itemBuilder: (ctx, index) {
+        return QuoteItem(quotes[index]);
+      },
     );
   }
 
