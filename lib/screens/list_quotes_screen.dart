@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ListQuotesScreen extends StatelessWidget {
+
   List<Quote> quotes = DummyQuotes().quotes;
 
   @override
@@ -52,7 +53,6 @@ class ListQuotesScreen extends StatelessWidget {
     //     return _buildList(context, snapshot.data.documents);
     //   },
     // );
-
     return ListQuotes(quotes);
   }
 
