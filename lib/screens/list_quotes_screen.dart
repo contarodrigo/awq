@@ -1,12 +1,12 @@
 import 'package:awq/components/list_quotes.dart';
+import 'package:awq/components/local_notification_widget.dart';
 import 'package:awq/data/dummy_data.dart';
 import 'package:awq/models/quote.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ListQuotesScreen extends StatelessWidget {
-
-  List<Quote> quotes = DummyQuotes().quotes;
+  final List<Quote> quotes = DummyQuotes().quotes;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,21 @@ class ListQuotesScreen extends StatelessWidget {
     //     return _buildList(context, snapshot.data.documents);
     //   },
     // );
-    return ListQuotes(quotes);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Flexible(
+          flex: 1,
+          child: LocalNotificationWidget(quotes), //LOCAL
+          // child: MessageWidget(),   from firebase
+        ),
+        Expanded(
+          flex: 6,
+          child: ListQuotes(quotes),
+        ),
+      ],
+    );
   }
 
   //  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {

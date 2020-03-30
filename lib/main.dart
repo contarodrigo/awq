@@ -24,7 +24,8 @@ class _MyAppState extends State<MyApp> {
       home: AnimatedSplash(
         imagePath: 'assets/images/book-splash.png',
         home: ListQuotesScreen(),
-        duration: 150,
+        duration: 10,
+        // duration: 150,
         type: AnimatedSplashType.StaticDuration,
       ),
       routes: {
