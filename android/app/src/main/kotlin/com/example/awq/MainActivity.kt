@@ -1,4 +1,4 @@
-package com.example.awq
+package com.gcoder.awq
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
