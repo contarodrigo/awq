@@ -4,12 +4,8 @@ import 'package:awq/utils/app_routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-/**
- * Classe para implememtacao de Firebase Cloud Messaging.
- * Campanhas enviadas com obejtivos de mkt, ex: posso criar um pagina para o usuario avaliar o app.
- * 
- * 
- */
+///Classe para implememtacao de Firebase Cloud Messaging.
+///Campanhas enviadas com obejtivos de mkt, ex: posso criar um pagina para o usuario avaliar o app.
 class MessageWidget extends StatefulWidget {
   @override
   _MessageWidgetState createState() => _MessageWidgetState();
