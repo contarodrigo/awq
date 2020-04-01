@@ -15,10 +15,10 @@ class ListQuotes extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
-        return ListView(
-          children: snapshot.data.documents
-              .map((data) => _buildListItem(context, data))
-              .toList(),
+        return ListView.builder(
+          itemCount: snapshot.data.documents.length,
+          itemBuilder: (context, index) =>
+              _buildListItem(context, snapshot.data.documents[index]),
         );
       },
     );

@@ -44,23 +44,12 @@ class ListQuotesScreen extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Flexible(
           flex: 1,
-          child: LocalNotificationWidget(quotes), //LOCAL
-
-        // child: StreamBuilder<QuerySnapshot>(
-        //   stream: Firestore.instance.collection('quotes').snapshots(),
-        //   builder: (context, snapshot) {
-        //     if (!snapshot.hasData) return LinearProgressIndicator();
-
-        //     return _buildList(context, snapshot.data.documents);
-        //   },
-        // ),
-          
+          child: LocalNotificationWidget(quotes), //LOCAL        
 
           // child: MessageWidget(),   from firebase
         ),
