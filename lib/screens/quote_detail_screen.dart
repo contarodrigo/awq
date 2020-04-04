@@ -14,7 +14,6 @@ class QuoteDetailScreen extends StatefulWidget {
 
 class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   GlobalKey _globalKey = new GlobalKey();
-
   var _imageToShare;
 
   _shareImageSync(Quote quote) {
@@ -23,14 +22,15 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 
   Future<void> _capturePng() async {
     try {
-      RenderRepaintBoundary boundary = _globalKey.currentContext.findRenderObject();
+      RenderRepaintBoundary boundary =
+          _globalKey.currentContext.findRenderObject();
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
       image = await boundary.toImage(pixelRatio: 3.0);
       ByteData byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData.buffer.asUint8List();
       setState(() {
-        //  _imageToShare = Image.memory(pngBytes.buffer.asUint8List());
+        //  _imageToShare = Image.memory(pngBytes.buffer.asUint8List()); To test
         _imageToShare = pngBytes;
       });
     } catch (e) {
@@ -45,6 +45,14 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
           text: '${quote.text} - ${quote.author}');
     } catch (e) {
       print('_shareImage error: $e');
+    }
+  }
+
+  String _getImageBySchool(Quote quote) {
+    if (quote.school == 1) {
+      return 'assets/images/background-marco-aurelio.jpg';
+    } else {
+      return 'assets/images/background-citacao-generico.jpg';
     }
   }
 
@@ -64,8 +72,8 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
               fit: StackFit.expand,
               children: <Widget>[
                 ClipRect(
-                  child: Image.network(
-                    'https://i.insider.com/53e00a6decad045538f4aa0e',
+                  child: Image.asset(
+                    _getImageBySchool(quote),
                     width: double.infinity,
                     height: 300,
                     fit: BoxFit.cover,
@@ -84,11 +92,12 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                           '" ${quote.text} "',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 26,
                             color: Colors.white,
                             fontFamily: 'SedgwickAve',
                           ),
-                          maxLines: 7,
+                          maxLines: 11,
+                          maxFontSize: 18,
+                          minFontSize: 18,
                         ),
                         SizedBox(
                           height: 30,

@@ -20,6 +20,11 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Color.fromRGBO(41, 52, 98, 1),
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
+        textTheme: TextTheme(
+          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          title:
+              TextStyle(fontSize: 16.0, color: Color.fromRGBO(41, 52, 98, 1)),
+        ),
       ),
       home: AnimatedSplash(
         imagePath: 'assets/images/book-splash.png',

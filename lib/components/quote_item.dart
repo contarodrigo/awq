@@ -21,17 +21,37 @@ class QuoteItem extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
-        ),
+            borderRadius: BorderRadius.circular(5.0),
+            color: Color.fromRGBO(41, 52, 98, 0.15)),
         padding: EdgeInsets.symmetric(vertical: 25),
-        child: ListTile(
-          title: Text(quote.text),
-          subtitle: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-            child: Text(quote.author),
-          ),
-          onTap: () => _selectQuote(context),
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                '" ${quote.text} "',
+                textAlign: TextAlign.justify,
+                style: Theme.of(context).textTheme.title,
+              ),
+              subtitle: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                        '- ${quote.author}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            color: Color.fromRGBO(41, 52, 98, 1)),
+                      ),
+                      SizedBox(height: 15),
+                      Icon(Icons.remove_red_eye, size: 30, color: Color.fromRGBO(41, 52, 98, 1),),
+                    ],
+                  )),
+              onTap: () => _selectQuote(context),
+            ),
+          ],
         ),
       ),
     );
