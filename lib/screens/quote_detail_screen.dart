@@ -48,6 +48,15 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
     }
   }
 
+  Future<void> _shareText(Quote quote) async {
+    try {
+      Share.text('Citação de ${quote.text}',
+          '${quote.text} - ${quote.author}', 'text/plain');
+    } catch (e) {
+      print('error: $e');
+    }
+  }
+
   String _getImageBySchool(Quote quote) {
     if (quote.school == 1) {
       return 'assets/images/background-marco-aurelio.jpg';
@@ -62,7 +71,15 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Citação de ${quote.author}'),
+          title: Text('Citação de ${quote.author}',
+              style: TextStyle(fontSize: 16)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.content_copy),
+              onPressed: () async => await _shareText(quote),
+              color: Colors.white,
+            )
+          ],
         ),
         body: RepaintBoundary(
           key: _globalKey,
