@@ -39,26 +39,7 @@ class ListQuotesScreen extends StatelessWidget {
           )
         ],
       ),
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Flexible(
-          flex: 1,
-          child: LocalNotificationWidget(quotes), //LOCAL        
-
-          // child: MessageWidget(),   from firebase
-        ),
-        Expanded(
-          flex: 6,
-          child: ListQuotes(quotes),
-        ),
-      ],
+      body: ListQuotes(),
     );
   }
 }
-

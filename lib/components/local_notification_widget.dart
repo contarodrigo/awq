@@ -18,6 +18,9 @@ class LocalNotificationWidget extends StatefulWidget {
 
 class _LocalNotificationWidgetState extends State<LocalNotificationWidget> {
   final notifications = FlutterLocalNotificationsPlugin();
+  Quote _quote;
+  int _notificationId = 0;
+  String _lastPayload;
 
   @override
   void initState() {
@@ -31,62 +34,63 @@ class _LocalNotificationWidgetState extends State<LocalNotificationWidget> {
     notifications.initialize(
         InitializationSettings(settingsAndroid, settingsIOS),
         onSelectNotification: onSelectNotification);
+
+    initScheduleNotificatio(2);
+    initDailyNotification();
+  }
+
+  Quote get _newQuote {
+    return widget.quotes[Random().nextInt(widget.quotes.length)];
+  }
+
+  Future initScheduleNotificatio(int seconds) {
+    setState(() {
+      _quote = _newQuote;
+      _notificationId = Random().nextInt(10000);
+    });
+
+    return showScheduleNotification(notifications,
+        title: _quote.author,
+        body: _quote.text,
+        id: _notificationId,
+        scheduledDate: DateTime.now().add(Duration(seconds: seconds)),
+        payload: _quote.id);
+  }
+
+  Future initDailyNotification() {
+    setState(() {
+      _quote = _newQuote;
+      _notificationId = Random().nextInt(10000);
+    });
+
+    return showDailyAtTimeNotification(notifications,
+        title: _quote.author,
+        body: _quote.text,
+        id: _notificationId,
+        time: Time(08, 00, 0),
+        payload: _quote.id);
   }
 
   Future onSelectNotification(String payload) async {
-  //TODO passa 2 vezes aqui print('onSelectNotification');
-    
+    // segundo a documentacao existe a possibilidade de chamar esse metodo de 2 pontos, e realmente acontece
+    // "caberá aos desenvolvedores garantir que eles não processem a mesma notificação duas vezes "
+    if (_lastPayload != null && _lastPayload == payload) {
+      return;
+    } else {
+      setState(() {
+        _lastPayload = payload;
+      });
+    }
+
     final Quote quoteToshow =
         widget.quotes.firstWhere((quote) => quote.id == payload);
 
-    return await Navigator.of(context)
+    await Navigator.of(context)
         .pushNamed(AppRoutes.QUOTE_DETAIL, arguments: quoteToshow);
   }
 
   @override
   Widget build(BuildContext context) {
-    final Quote quote = widget.quotes[Random().nextInt(widget.quotes.length)];
-
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: <Widget>[
-            RaisedButton(
-              child: Text('send notification'),
-              onPressed: () => showOngoingNotification(notifications,
-                  title: quote.author,
-                  body: quote.text,
-                  id: 20,
-                  payload: quote.id),
-            ),
-            // RaisedButton(
-            //   child: Text('Cancel all notification'),
-            //   onPressed: notifications.cancelAll,
-            // ),
-            // RaisedButton(
-            //   child: Text('Schedule notification to appear in 2 seconds'),
-            //   onPressed: () async {
-            //     await showScheduleNotification(notifications,
-            //         title: quote.author,
-            //         body: quote.text,
-            //         id: 31,
-            //         scheduledDate: DateTime.now().add(Duration(seconds: 2)));
-            //   },
-            // ),
-            // RaisedButton(
-            //   child: Text('every day at approximately 12:54:00 am'),
-            //   onPressed: () async {
-            //     await showDailyAtTimeNotification(notifications,
-            //         title: quote.author,
-            //         body: quote.text,
-            //         id: 32,
-            //         time: Time(12, 59, 0));
-            //   },
-            // ),
-          ],
-        ),
-      ),
-    );
+    return Container();
   }
 }
