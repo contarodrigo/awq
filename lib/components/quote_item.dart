@@ -46,7 +46,7 @@ class QuoteItem extends StatelessWidget {
                             color: Color.fromRGBO(41, 52, 98, 1)),
                       ),
                       SizedBox(height: 15),
-                      Icon(Icons.remove_red_eye, size: 30, color: Color.fromRGBO(41, 52, 98, 1),),
+                      Icon(Icons.touch_app, size: 30, color: Color.fromRGBO(41, 52, 98, 1),),
                     ],
                   )),
               onTap: () => _selectQuote(context),

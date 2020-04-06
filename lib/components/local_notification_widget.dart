@@ -35,7 +35,7 @@ class _LocalNotificationWidgetState extends State<LocalNotificationWidget> {
         InitializationSettings(settingsAndroid, settingsIOS),
         onSelectNotification: onSelectNotification);
 
-    initScheduleNotificatio(2);
+    // initScheduleNotificatio(2);
     initDailyNotification();
   }
 
