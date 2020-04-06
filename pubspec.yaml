@@ -59,6 +59,7 @@ flutter:
    - assets/images/book-splash.png
    - assets/images/background-marco-aurelio.jpg
    - assets/images/background-citacao-generico.jpg
+   - assets/images/bau-de-tesouro.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

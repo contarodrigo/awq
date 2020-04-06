@@ -1,3 +1,4 @@
+import 'package:awq/components/box_quote_widget.dart';
 import 'package:awq/components/local_notification_widget.dart';
 import 'package:awq/components/quote_item.dart';
 import 'package:awq/models/quote.dart';
@@ -19,6 +20,10 @@ class ListQuotes extends StatelessWidget {
             Container(
               child: LocalNotificationWidget(quotes),
             ), //LOCAL
+            Expanded(
+              flex: 3,
+              child: BoxQuoteWidget(quotes),
+            ),
             Expanded(
               flex: 6,
               child: ListView.builder(
