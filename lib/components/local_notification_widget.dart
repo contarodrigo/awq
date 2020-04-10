@@ -60,13 +60,13 @@ class _LocalNotificationWidgetState extends State<LocalNotificationWidget> {
   Future initDailyNotification() {
     setState(() {
       _quote = _newQuote;
-      _notificationId = Random().nextInt(10000);
+      _notificationId = Random().nextInt(1000);
     });
 
     return showDailyAtTimeNotification(notifications,
         title: _quote.author,
         body: _quote.text,
-        id: _notificationId,
+        id: 1111, //fixed 
         time: Time(08, 00, 0),
         payload: _quote.id);
   }
